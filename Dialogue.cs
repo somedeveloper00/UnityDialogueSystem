@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TriInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +9,6 @@ namespace DialogueSystem
 	[DisallowMultipleComponent]
 	[RequireComponent(typeof(CanvasGroup))]
 	[RequireComponent(typeof(GraphicRaycaster))]
-	[DeclareFoldoutGroup("init", Title = "Init")]
 	public abstract class Dialogue : MonoBehaviour
 	{
 		public event Action onClose;
@@ -33,7 +31,6 @@ namespace DialogueSystem
 			}
 		}
 
-	
 		/// <summary>
 		/// called when the dialogue is opened through a path string
 		/// </summary>

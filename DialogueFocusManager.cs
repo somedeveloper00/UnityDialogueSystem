@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using TriInspector;
 using UnityEngine;
 
 namespace DialogueSystem
@@ -7,11 +6,10 @@ namespace DialogueSystem
 	[CreateAssetMenu( fileName = "DialogueFocusManager", menuName = "HitViking/Dialogue/Manager", order = 0 )]
 	public class DialogueFocusManager : ScriptableObject
 	{      
-		[Title( "Runtime" )] 
-		List<Dialogue> dialogues = new List<Dialogue>(16);
-
 		public int startingSortingLayer = 5;
 		public int sortingLayerIncrement = 1;
+		
+		List<Dialogue> dialogues = new List<Dialogue>(16);
 
 		/// <summary>
 		/// Adds the dialogue to the list of dialogues.

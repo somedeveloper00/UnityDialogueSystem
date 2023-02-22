@@ -1,24 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using TriInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace DialogueSystem
 {
-	[CreateAssetMenu( fileName = "New Dialogue Creator", menuName = "HitViking/Dialogue/Creator", order = 0 )]
-	public class DialogueCreator : ScriptableObject
+	[Serializable]
+	public class DialogueCreator
 	{
-		[SerializeField] Dialogue prefab;
+		[SerializeField] internal Dialogue prefab;
 		
-		[PropertyTooltip("The maximum amount of instances that can simultaneously exist. -1 means unlimited")]
-		[SerializeField] [Min(-1)] int maxInstances = -1;
+		[Tooltip("The maximum amount of instances that can simultaneously exist. -1 means unlimited")]
+		[SerializeField] [Min(-1)] internal int maxInstances = -1;
 
-		[DisableIf(nameof(maxInstances), 1)]
-		[SerializeField] MaximumReachedBehaviour maximumReachedBehaviour;
+		[SerializeField] internal MaximumReachedBehaviour maximumReachedBehaviour;
 
-		enum MaximumReachedBehaviour
+		internal enum MaximumReachedBehaviour
 		{
 			GetOldest, GetNewest
 		}
@@ -45,7 +42,7 @@ namespace DialogueSystem
 			}
 			else {
 				// create one	
-				dialogue = Instantiate( prefab, parent );
+				dialogue = UnityEngine.Object.Instantiate( prefab, parent );
 				_dialogues.Add( dialogue );
 			}
 			
@@ -69,14 +66,6 @@ namespace DialogueSystem
 		/// does a <see cref="Component.TryGetComponent"/> on the prefab to check if it has the component on it
 		/// </summary>
 		public bool PrefabIs<T>() where T : Dialogue => prefab.TryGetComponent<T>( out _ );
-
-		/// <summary>
-		/// returns the path of the dialogue (prefab). if none, it returns <see cref="string.Empty"/>
-		/// </summary>
-		public string GetPath() {
-			if ( prefab == null ) return string.Empty;
-			return prefab.GetType().GetCustomAttribute<DialoguePathAttribute>()?.Path ?? string.Empty;
-		}
 
 		void flushList() {
 			for ( int i = 0; i < _dialogues.Count; i++ ) {

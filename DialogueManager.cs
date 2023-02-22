@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Reflection;
 using System.Threading.Tasks;
-using TriInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,14 +19,12 @@ namespace DialogueSystem
         
         public bool closeOnEscape = true;
 
-        [InlineEditor]
-        [SerializeField] DialogueCreator[] creators;
+        [SerializeField] internal DialogueCreator[] creators;
 
         static EventSystem _eventSystem;   
 
         void OnEnable() {
 			Current = this;
-            Debug.Log( "dialogue manager initialized" );
             runEscapeChecks();
         }
 
@@ -55,7 +53,8 @@ namespace DialogueSystem
 		public Dialogue GetOrCreateByPath(string dialoguePath, string argvs, Transform parent = null) {
 			Current = this;
 			for ( int i = 0; i < creators.Length; i++ ) {
-				if ( creators[i].GetPath() == dialoguePath ) {
+				if ( creators[i].prefab == null ) continue;
+				if ( GetPath(creators[i].prefab.GetType()) == dialoguePath ) {
 					if ( parent == null ) parent = getParent();
 					var d = creators[i].GetOrCreate( this, parent );
 					d.InitByPath( argvs );
@@ -106,6 +105,16 @@ namespace DialogueSystem
 			var d  = focusManager.GetFocusedDialogue();
 			if ( d != null ) return d.transform.parent;
 			return null;
+		}
+
+		/// <summary>
+		/// returns the path of the given dialogue type
+		/// </summary>
+		public static string GetPath(Type dialogueType) {
+			if ( dialogueType.IsAbstract
+			     || !dialogueType.IsSubclassOf( typeof(Dialogue) ) )
+				return string.Empty;
+			return dialogueType.GetCustomAttribute<DialoguePathAttribute>()?.Path ?? dialogueType.FullName;
 		}
 	}
 }
