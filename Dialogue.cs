@@ -34,7 +34,7 @@ namespace DialogueSystem
 		/// <summary>
 		/// called when the dialogue is opened through a path string
 		/// </summary>
-		public virtual void InitByPath(string path) { }
+		public virtual void InitByPath(string argvs) { }
 
 		public void SetInteractable(bool value) {
 			canvasGroup.interactable = value;
