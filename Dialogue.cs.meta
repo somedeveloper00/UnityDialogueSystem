@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d70a05437ce14aa68e1c78906f5f3537
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - focusManager: {fileID: 11400000, guid: c59a93642d1ea6240ae4879401f37b4c, type: 2}
+  - dialogueInventory: {fileID: 11400000, guid: 5179344e00448df478c25f1627a7b36a, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
