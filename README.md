@@ -3,8 +3,6 @@ General purpose Dialogue system
 
 ![GitHub repo file count](https://img.shields.io/github/directory-file-count/somedeveloper00/UnityDialogueSystem)
 ![GitHub repo size](https://img.shields.io/github/repo-size/somedeveloper00/UnityDialogueSystem)
-![GitHub release (latest by date)](https://img.shields.io/github/downloads/somedeveloper00/UnityDialogueSystem/release/total)
-![GitHub](https://img.shields.io/github/license/somedeveloper00/UnityDialogueSystem)
 
 ## Usage
 ### Create new dialogue
