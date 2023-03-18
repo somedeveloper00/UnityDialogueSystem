@@ -10,7 +10,7 @@ namespace DialogueSystem
     /// a singleton dialogue instancing manager system that handles the creation and linking of
     /// dialogues
     /// </summary>
-    [CreateAssetMenu( fileName = "DialogueInventory", menuName = "HitViking/Dialogue/Dialogue Inventory", order = 0 )]
+    [CreateAssetMenu( fileName = "DialogueManager", menuName = "Dialogue/Dialogue Manager", order = 0 )]
     public class DialogueManager : ScriptableObject 
 	{
         public static DialogueManager Current { get; private set; }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DialogueSystem
 {
-	[CreateAssetMenu( fileName = "DialogueFocusManager", menuName = "HitViking/Dialogue/Manager", order = 0 )]
+	[CreateAssetMenu( fileName = "DialogueFocusManager", menuName = "Dialogue/Focus Manager", order = 0 )]
 	public class DialogueFocusManager : ScriptableObject
 	{      
 		public int startingSortingLayer = 5;
