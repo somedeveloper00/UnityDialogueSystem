@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace DialogueSystem
+namespace DialogueSystem.Editor
 {
     [CustomPropertyDrawer( typeof(DialogueOpener.DialoguePathItem) )]
     public class DialoguePathItemDrawer : PropertyDrawer

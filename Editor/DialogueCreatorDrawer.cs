@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace DialogueSystem
+namespace DialogueSystem.Editor
 {
     [CustomPropertyDrawer( typeof(DialogueCreator) )]
     public class DialogueCreatorDrawer : PropertyDrawer
@@ -10,6 +10,8 @@ namespace DialogueSystem
             var prefabProp = property.FindPropertyRelative( nameof(DialogueCreator.prefab) );
             var maxInstancesProp = property.FindPropertyRelative( nameof(DialogueCreator.maxInstances) );
             var maximumReachedBehaviourProp = property.FindPropertyRelative( nameof(DialogueCreator.maximumReachedBehaviour) );
+            var fallbackScaleProp = property.FindPropertyRelative( nameof(DialogueCreator.fallbackScale) );
+            var fallbackPixelPerUnitProp = property.FindPropertyRelative( nameof(DialogueCreator.fallbackPixelPerUnit) );
             
             using (new EditorGUI.PropertyScope( position, label, property )) {
                 position.height = EditorGUIUtility.singleLineHeight;
@@ -24,6 +26,12 @@ namespace DialogueSystem
                     
                     position.y += position.height + EditorGUIUtility.standardVerticalSpacing;
                     EditorGUI.PropertyField( position, maxInstancesProp );
+
+                    position.y += position.height + EditorGUIUtility.standardVerticalSpacing;
+                    EditorGUI.PropertyField( position, fallbackScaleProp );
+
+                    position.y += position.height + EditorGUIUtility.standardVerticalSpacing;
+                    EditorGUI.PropertyField( position, fallbackPixelPerUnitProp );
                     
                     if ( maxInstancesProp.intValue == 0 ) maxInstancesProp.intValue = -1;
                     if ( maxInstancesProp.intValue > 1 ) {
@@ -39,8 +47,8 @@ namespace DialogueSystem
             var maxInstancesProp = property.FindPropertyRelative( nameof(DialogueCreator.maxInstances) );
             return property.isExpanded
                 ? maxInstancesProp.intValue > 1
-                    ? EditorGUIUtility.singleLineHeight * 4 + EditorGUIUtility.standardVerticalSpacing * 3
-                    : EditorGUIUtility.singleLineHeight * 3 + EditorGUIUtility.standardVerticalSpacing * 2
+                    ? EditorGUIUtility.singleLineHeight * 6 + EditorGUIUtility.standardVerticalSpacing * 3
+                    : EditorGUIUtility.singleLineHeight * 5 + EditorGUIUtility.standardVerticalSpacing * 2
                 : EditorGUIUtility.singleLineHeight;
         }
     }

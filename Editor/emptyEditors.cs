@@ -1,26 +1,22 @@
 ﻿using UnityEditor;
 
-namespace DialogueSystem
-{
+namespace DialogueSystem.Editor {
     [CustomEditor( typeof(DialogueManager) )]
-    public class DialogueManagerEditor : Editor
-    {
+    public class DialogueManagerEditor : UnityEditor.Editor {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
         }
     }
 
     [CustomEditor( typeof(DialogueFocusManager) )]
-    public class DialogueFocusManagerEditor : Editor
-    {
+    public class DialogueFocusManagerEditor : UnityEditor.Editor {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
         }
     }
 
     [CustomEditor( typeof(DialogueOpener) )]
-    public class DialogueOpenerEditor : Editor
-    {
+    public class DialogueOpenerEditor : UnityEditor.Editor {
         public override void OnInspectorGUI() {
             base.OnInspectorGUI();
         }

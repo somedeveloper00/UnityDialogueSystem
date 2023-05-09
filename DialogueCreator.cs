@@ -14,6 +14,8 @@ namespace DialogueSystem
 		[SerializeField] [Min(-1)] internal int maxInstances = -1;
 
 		[SerializeField] internal MaximumReachedBehaviour maximumReachedBehaviour;
+		[SerializeField] internal Vector2 fallbackScale = new Vector2( 1920, 1080 );
+		[SerializeField] internal int fallbackPixelPerUnit = 100;
 
 		internal enum MaximumReachedBehaviour
 		{
@@ -52,7 +54,8 @@ namespace DialogueSystem
 				if ( scaler == null )
 					scaler = dialogue.gameObject.AddComponent<CanvasScaler>();
 				scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-				scaler.referenceResolution = new Vector2( 1920, 1080 );
+				scaler.referenceResolution = fallbackScale;
+				scaler.referencePixelsPerUnit = fallbackPixelPerUnit;
 				
 				// preparing proper default canvas render mode
 				Canvas canvas = dialogue.canvas;
