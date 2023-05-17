@@ -47,8 +47,8 @@ namespace DialogueSystem.Editor
             var maxInstancesProp = property.FindPropertyRelative( nameof(DialogueCreator.maxInstances) );
             return property.isExpanded
                 ? maxInstancesProp.intValue > 1
-                    ? EditorGUIUtility.singleLineHeight * 6 + EditorGUIUtility.standardVerticalSpacing * 3
-                    : EditorGUIUtility.singleLineHeight * 5 + EditorGUIUtility.standardVerticalSpacing * 2
+                    ? EditorGUIUtility.singleLineHeight * 6 + EditorGUIUtility.standardVerticalSpacing * 4
+                    : EditorGUIUtility.singleLineHeight * 5 + EditorGUIUtility.standardVerticalSpacing * 3
                 : EditorGUIUtility.singleLineHeight;
         }
     }
