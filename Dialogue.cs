@@ -19,7 +19,7 @@ namespace DialogueSystem
 
 		Dialogue Parent;
 		List<Dialogue> Children = new ( 1 );
-
+		float _alpha = 1; // temporary canvasGroup's alpha
 
 		public int order {
 			get {
@@ -105,11 +105,15 @@ namespace DialogueSystem
 			// and tweak the dialogue before it's functionalities start (earliest one is at Start)
 		}
 
-		protected virtual void OnEnable() {
-			// preserving it in case we'll need it
+		protected void OnEnable() {
+			// because of the way unity handles inits, Start may be called AFTER the first render. 
+			// so we need to make sure the dialogue is hidden before it's Start is called
+			_alpha = canvasGroup.alpha;
+			canvasGroup.alpha = 0;
 		}
 
 		protected virtual void Start() {
+			canvasGroup.alpha = _alpha; // restoring the alpha
 			DialogueManager.Current.ResolveEventSystem();
 			DialogueManager.Current.focusManager.AddDialogue( this );
 		}
