@@ -66,9 +66,9 @@ namespace DialogueSystem
 		}
 
 		/// <summary>
-		/// does a <see cref="Component.TryGetComponent"/> on the prefab to check if it has the component on it
+		/// checks if the prefab is of type <see cref="T"/>
 		/// </summary>
-		public bool PrefabIs<T>() where T : Dialogue => prefab.TryGetComponent<T>( out _ );
+		public bool PrefabIs<T>() where T : Dialogue => prefab is T;
 
 		void flushList() {
 			for ( int i = 0; i < _dialogues.Count; i++ ) {
