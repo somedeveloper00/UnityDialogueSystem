@@ -14,10 +14,7 @@ namespace DialogueSystem
     public class DialogueManager : ScriptableObject 
 	{
         public static DialogueManager Current { get; private set; }
-
         public DialogueFocusManager focusManager;
-        
-        public bool closeOnEscape = true;
 
         [SerializeField] internal DialogueCreator[] creators;
 
@@ -87,13 +84,11 @@ namespace DialogueSystem
 		async void runEscapeChecks() {
 			while ( true ) {
 				await Task.Yield();
-				if ( closeOnEscape ) {
-					if ( Input.GetKeyDown( KeyCode.Escape ) ) {
-						if ( focusManager == null ) continue;
-						var focusedDialogue = focusManager.GetFocusedDialogue();
-						if ( focusedDialogue == null ) continue;
-						if ( focusedDialogue is IEscapableDialogue escapableDialogue && 
-						     !await escapableDialogue.CanEscape ) continue;
+				if ( Input.GetKeyDown( KeyCode.Escape ) ) {
+					if ( focusManager == null ) continue;
+					var focusedDialogue = focusManager.GetFocusedDialogue();
+					if ( focusedDialogue == null ) continue;
+					if (focusedDialogue is IEscapableDialogue escapableDialogue && await escapableDialogue.CanEscape) {
 						focusedDialogue.Close();
 					}
 				}
